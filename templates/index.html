@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#315bea">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="/static/manifest.json">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
   <title>Techvanta Project Hub</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -32,6 +38,10 @@
       <label>Project role<input id="regRole" placeholder="e.g. Backend Developer"></label>
       <button class="primary wide" type="submit">Create Team Account</button>
     </form>
+    <div id="installAppBox" class="install-app hidden">
+      <div><strong>Install Techvanta Hub</strong><span>Use it like an app on your phone or desktop.</span></div>
+      <button id="installAppBtn" class="secondary">Install App</button>
+    </div>
     <p class="auth-note">Shared workspace • Login system remains team-based</p>
   </div>
 </section>

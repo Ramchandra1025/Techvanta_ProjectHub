@@ -1,6 +1,35 @@
 const $=s=>document.querySelector(s);const $$=s=>document.querySelectorAll(s);
 let me=null, currentPage='dashboard', timeBuffer=0, lastTime=Date.now(), chatSocket=null;
 const state={tasks:[],research:[],sources:[],members:[],milestones:[],leaderboard:[],chat:[]};
+
+// PWA installation: show a voluntary install button when the browser supports it.
+let deferredInstallPrompt=null;
+function setupPWA(){
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(err=>console.warn('PWA service worker:',err)));
+  }
+  window.addEventListener('beforeinstallprompt',event=>{
+    event.preventDefault();
+    deferredInstallPrompt=event;
+    $('#installAppBox')?.classList.remove('hidden');
+  });
+  window.addEventListener('appinstalled',()=>{
+    deferredInstallPrompt=null;
+    $('#installAppBox')?.classList.add('hidden');
+    toast('Techvanta Hub installed');
+  });
+  $('#installAppBtn')?.addEventListener('click',async()=>{
+    if(!deferredInstallPrompt){
+      toast('If Install is not offered, use your browser menu and choose Install app / Add to Home Screen.');
+      return;
+    }
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt=null;
+    $('#installAppBox')?.classList.add('hidden');
+  });
+}
+setupPWA();
 function esc(v=''){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function toast(msg,error=false){const t=$('#toast');t.textContent=msg;t.className='toast show'+(error?' error':'');setTimeout(()=>t.className='toast',3000)}
 async function api(url,opt={}){const r=await fetch(url,{credentials:'include',headers:{'Content-Type':'application/json',...(opt.headers||{})},...opt});let d={};try{d=await r.json()}catch{}if(r.status===401){showAuth();throw Error(d.error||'Login required')}if(!r.ok||d.success===false)throw Error(d.error||'Request failed');return d}
