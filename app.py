@@ -656,6 +656,11 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/sw.js")
+def service_worker():
+    return app.send_static_file("sw.js")
+
+
 @app.route("/health")
 def health():
     return jsonify({
