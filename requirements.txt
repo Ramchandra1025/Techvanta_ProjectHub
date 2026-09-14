@@ -1,0 +1,10 @@
+Flask>=3.0
+Flask-Cors>=4.0
+python-dotenv>=1.0
+supabase>=2.0
+groq>=0.20
+Werkzeug>=3.0
+gunicorn>=21.0
+
+Flask-Sock>=0.7
+simple-websocket>=1.1

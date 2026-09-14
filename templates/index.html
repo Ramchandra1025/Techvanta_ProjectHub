@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Techvanta Project Hub</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div id="toast" class="toast"></div>
+
+<section id="authView" class="auth-shell">
+  <div class="auth-card">
+    <div class="brand-mark">T</div>
+    <h1>Techvanta Project Hub</h1>
+    <p class="muted">SIH26090 Artisan Project Workspace</p>
+    <div class="auth-tabs">
+      <button class="tab active" data-auth="login">Login</button>
+      <button class="tab" data-auth="register">Register</button>
+    </div>
+    <form id="loginForm" class="auth-form">
+      <label>Username<input id="loginUsername" required autocomplete="username"></label>
+      <label>Password<input id="loginPassword" type="password" required autocomplete="current-password"></label>
+      <button class="primary wide" type="submit">Login to Team</button>
+    </form>
+    <form id="registerForm" class="auth-form hidden">
+      <label>Display name<input id="regDisplayName" required></label>
+      <label>Username<input id="regUsername" required></label>
+      <label>Password<input id="regPassword" type="password" minlength="6" required></label>
+      <label>Team name<input id="regTeam" value="Techvanta" required></label>
+      <label>Team password<input id="regTeamPassword" type="password" required></label>
+      <label>Project role<input id="regRole" placeholder="e.g. Backend Developer"></label>
+      <button class="primary wide" type="submit">Create Team Account</button>
+    </form>
+    <p class="auth-note">Shared workspace • Login system remains team-based</p>
+  </div>
+</section>
+
+<section id="appView" class="app-shell hidden">
+  <aside class="sidebar" id="sidebar">
+    <div class="side-brand"><span class="brand-mark small">T</span><div><strong>Techvanta</strong><small>Project Hub</small></div></div>
+    <nav>
+      <button class="nav-item active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+      <button class="nav-item" data-page="tasks">✓ <span>My Tasks</span></button>
+      <button class="nav-item" data-page="board">▦ <span>Project Board</span></button>
+      <button class="nav-item" data-page="milestones">◆ <span>Milestones</span></button>
+      <button class="nav-item" data-page="team">♟ <span>Team</span></button>
+      <button class="nav-item" data-page="research">⌕ <span>Research</span></button>
+      <button class="nav-item" data-page="resources">↗ <span>Resources</span></button>
+      <button class="nav-item" data-page="chat">☏ <span>Team Chat</span></button>
+      <button class="nav-item" data-page="leaderboard">🏆 <span>Leaderboard</span></button>
+      <button class="nav-item" data-page="ai">✦ <span>AI Assistant</span></button>
+    </nav>
+    <div class="side-bottom">
+      <button class="nav-item" data-page="profile">● <span>Profile</span></button>
+      <button class="nav-item danger" id="logoutBtn">↪ <span>Logout</span></button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button id="menuBtn" class="icon-btn mobile-only">☰</button>
+      <div><h2 id="pageTitle">Dashboard</h2><p id="pageSubtitle">Your team's project control center</p></div>
+      <div class="top-user"><span id="topAvatar">R</span><div><strong id="topName">Member</strong><small id="topHandle">@member</small></div></div>
+    </header>
+
+    <div id="pageContent" class="content"></div>
+  </main>
+</section>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
